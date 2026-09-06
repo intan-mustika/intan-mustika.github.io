@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architect Portfolio | Dark Mode</title>
+    <style>
+        /* Premium Dark Architecture Theme */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Deep Charcoal Black */
+            color: #e5e5e5; /* Off-White for readability */
+            line-height: 1.6;
+        }
+
+        header {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #262626;
+        }
+
+        h1 {
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Tabs Navigation Menu */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 25px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            color: #666666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+        }
+
+        .tab-btn.active {
+            color: #ffffff;
+            border-bottom: 2px solid #ffffff;
+            font-weight: bold;
+        }
+
+        /* Tab Content Display Logic */
+        .content-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .tab-content {
+            display: none; /* Hidden by default */
+        }
+
+        .tab-content.active {
+            display: block; /* Shown only when active */
+        }
+
+        h2 {
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #b3b3b3;
+        }
+
+        /* Dummy Project Grid Styling */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background-color: #1a1a1a;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #2a2a2a;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: #888888;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: #555555;
+            color: #ffffff;
+            background-color: #222222;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            font-size: 11px;
+            color: #555555;
+            border-top: 1px solid #262626;
+            margin-top: 80px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Alex Mercer</h1>
+        <div class="subtitle">Architectural Design & Spatial Planning</div>
+        
+        <!-- Navigation Tabs -->
+        <nav>
+            <button class="tab-btn active" onclick="openTab(event, 'profile')">Profile</button>
+            <button class="tab-btn" onclick="openTab(event, 'projects')">Projects</button>
+            <button class="tab-btn" onclick="openTab(event, 'contact')">Contact</button>
+        </nav>
+    </header>
+
+    <div class="content-container">
+        
+        <!-- PROFILE TAB -->
+        <div id="profile" class="tab-content active">
+            <h2>About The Studio</h2>
+            <p>Welcome to my digital space. I am a licensed architect specializing in sustainable, minimalist residential structures and smart urban design solutions. My work bridges the gap between raw natural landscapes and clean, contemporary geometric forms.</p>
+            <p>Every blueprint is approached with a commitment to minimal environmental impact, material integrity, and structural longevity.</p>
+        </div>
+
+        <!-- PROJECTS TAB -->
+        <div id="projects" class="tab-content">
+            <h2>Selected Works</h2>
+            <p>A curated look at residential and commercial concepts emphasizing glass, steel, and raw monolithic concrete.</p>
+            <div class="project-grid">
+                <div class="project-card">[ The Monolith Pavilion ]</div>
+                <div class="project-card">[ Obsidian Glass Residence ]</div>
+                <div class="project-card">[ Eco-Urban Canopy Center ]</div>
+            </div>
+        </div>
+
+        <!-- CONTACT TAB -->
+        <div id="contact" class="tab-content">
+            <h2>Get In Touch</h2>
+            <p>Interested in collaborating on a future commission or looking for custom spatial consulting?</p>
+            <p style="margin-top: 30px;"><strong>Email:</strong> studio@alexmercerarch.com</p>
+            <p><strong>Studio Address:</strong> 404 Brutalist Ave, Suite 10, New York, NY</p>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Alex Mercer Architecture. Powered by GitHub Pages.
+    </footer>
+
+    <!-- Tab Switching Logic Script -->
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab contents
+            const contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+
+            // Remove the 'active' class from all buttons
+            const buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            // Show the selected tab content and highlight the clicked button
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
