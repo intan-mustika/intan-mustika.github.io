@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Architect Portfolio | Dark Mode</title>
+    
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         /* Premium Dark Architecture Theme */
         body {
@@ -16,7 +20,7 @@
         }
 
         header {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
@@ -70,7 +74,7 @@
 
         /* Tab Content Display Logic */
         .content-container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -94,33 +98,56 @@
             color: #b3b3b3;
         }
 
-        /* PDF Viewer Styling */
-        .pdf-wrapper {
-            width: 100%;
-            height: 75vh;
-            min-height: 600px;
-            margin-top: 25px;
-            border: 1px solid #2a2a2a;
+        /* --- SWIPER SLIDER STYLING --- */
+        .swiper-container-wrapper {
+            position: relative;
+            margin-top: 30px;
+            background-color: #0d0d0d;
+            border: 1px solid #222222;
             border-radius: 4px;
-            background-color: #1a1a1a;
-            overflow: hidden;
+            padding: 20px 0;
         }
 
-        .pdf-viewer {
+        .swiper {
             width: 100%;
-            height: 100%;
-            border: none;
+            height: 70vh;
+            min-height: 500px;
         }
 
-        .pdf-fallback {
-            padding: 20px;
-            text-align: center;
-            color: #888888;
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0d0d0d;
         }
 
-        .pdf-fallback a {
-            color: #ffffff;
-            text-decoration: underline;
+        .swiper-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Customizing Swiper Controls to Match Theme */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #ffffff !important;
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet {
+            background: #ffffff !important;
+            opacity: 0.3;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1 !important;
         }
 
         footer {
@@ -140,10 +167,9 @@
         <h1>Intan Mustika</h1>
         <div class="subtitle">Architectural Design & Spatial Planning</div>
         
-        <!-- Navigation Tabs -->
         <nav>
             <button class="tab-btn active" data-tab="profile">Profile</button>
-            <button class="tab-btn" data-tab="projects">Portfolio PDF</button>
+            <button class="tab-btn" data-tab="projects">Selected Works</button>
             <button class="tab-btn" data-tab="contact">Contact</button>
         </nav>
     </header>
@@ -154,24 +180,28 @@
         <div id="profile" class="tab-content active">
             <h2>About The Studio</h2>
             <p>Welcome to my digital space. I am an architectural designer specializing in sustainable structures, spatial planning, and building in existing contexts. My work bridges raw natural landscapes and clean, contemporary geometric forms.</p>
-            <p>Every blueprint is approached with a commitment to minimal environmental impact, material integrity, and structural longevity.</p>
         </div>
 
-        <!-- PROJECTS / PDF TAB -->
+        <!-- PROJECTS TAB (SWIPER SLIDER) -->
         <div id="projects" class="tab-content">
-            <h2>Selected Works Portfolio</h2>
-            <p>View or download the full architectural portfolio document below.</p>
+            <h2>Selected Works</h2>
+            <p>Use arrow keys or swipe to navigate through the project pages.</p>
             
-            <div class="pdf-wrapper">
-                <!-- Replace 'portfolio.pdf' with your actual PDF filename in your repository -->
-                <object class="pdf-viewer" data="portfolio.pdf" type="application/pdf">
-                    <iframe class="pdf-viewer" src="portfolio.pdf">
-                        <div class="pdf-fallback">
-                            <p>Your browser does not support embedded PDFs.</p>
-                            <a href="portfolio.pdf" target="_blank" rel="noopener">Click here to download/view the Portfolio PDF</a>
-                        </div>
-                    </iframe>
-                </object>
+            <div class="swiper-container-wrapper">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Add your exported portfolio pages here -->
+                        <div class="swiper-slide"><img src="portfolio_pages/page-1.jpg" alt="Portfolio Page 1"></div>
+                        <div class="swiper-slide"><img src="portfolio_pages/page-2.jpg" alt="Portfolio Page 2"></div>
+                        <div class="swiper-slide"><img src="portfolio_pages/page-3.jpg" alt="Portfolio Page 3"></div>
+                        <div class="swiper-slide"><img src="portfolio_pages/page-4.jpg" alt="Portfolio Page 4"></div>
+                    </div>
+
+                    <!-- Navigation controls -->
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
             </div>
         </div>
 
@@ -189,25 +219,42 @@
         &copy; 2026 Intan Mustika. Powered by GitHub Pages.
     </footer>
 
-    <!-- Tab Switching Logic Script -->
+    <!-- Swiper.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Tab Switching & Swiper Initialization Script -->
     <script>
+        let swiperInstance = null;
+
         document.querySelectorAll('.tab-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const targetTab = button.getAttribute('data-tab');
 
-                // Hide all contents
                 document.querySelectorAll('.tab-content').forEach(content => {
                     content.classList.remove('active');
                 });
-
-                // Deactivate all buttons
                 document.querySelectorAll('.tab-btn').forEach(btn => {
                     btn.classList.remove('active');
                 });
 
-                // Activate selected tab content & button
                 document.getElementById(targetTab).classList.add('active');
                 button.classList.add('active');
+
+                // Initialize Swiper when the 'Selected Works' tab is opened
+                if (targetTab === 'projects') {
+                    if (!swiperInstance) {
+                        swiperInstance = new Swiper('.swiper', {
+                            loop: false,
+                            grabCursor: true,
+                            keyboard: { enabled: true },
+                            pagination: { el: '.swiper-pagination', clickable: true },
+                            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                        });
+                    } else {
+                        // Force layout update when switching back to tab
+                        swiperInstance.update();
+                    }
+                }
             });
         });
     </script>
