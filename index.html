@@ -3,261 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architect Portfolio | Dark Mode</title>
+    <title>Architectural Portfolio</title>
     
-    <!-- Swiper.js CSS -->
+    <!-- Swiper.js CSS (CDN) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* Premium Dark Architecture Theme */
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+        /* Modern Reset & Fullscreen Viewport */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #121212;
-            color: #e5e5e5;
-            line-height: 1.6;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
-        header {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 1px solid #262626;
-        }
-
-        h1 {
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 5px;
-            color: #ffffff;
-        }
-
-        .subtitle {
-            font-size: 13px;
-            color: #888888;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Tabs Navigation Menu */
-        nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 10px 25px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            color: #666666;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn:hover {
-            color: #ffffff;
-        }
-
-        .tab-btn.active {
-            color: #ffffff;
-            border-bottom: 2px solid #ffffff;
-            font-weight: bold;
-        }
-
-        /* Tab Content Display Logic */
-        .content-container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        h2 {
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        p {
-            color: #b3b3b3;
-        }
-
-        /* --- SWIPER SLIDER STYLING --- */
-        .swiper-container-wrapper {
-            position: relative;
-            margin-top: 30px;
-            background-color: #0d0d0d;
-            border: 1px solid #222222;
-            border-radius: 4px;
-            padding: 20px 0;
-        }
-
-        .swiper {
+        html, body {
             width: 100%;
-            height: 70vh;
-            min-height: 500px;
+            height: 100%;
+            overflow: hidden; /* Disable scrollbars */
+            background-color: #0d0d0d; /* Pure dark charcoal/black */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* Swiper Viewport Container */
+        .swiper {
+            width: 100vw;
+            height: 100vh;
+            background-color: #0d0d0d;
         }
 
         .swiper-slide {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #0d0d0d;
+            overflow: hidden;
         }
 
+        /* Fullscreen Image Presentation */
         .swiper-slide img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Preserves exact aspect ratio without clipping drawings */
+            display: block;
         }
 
-        /* Customizing Swiper Controls to Match Theme */
+        /* Minimalist Navigation Arrows */
         .swiper-button-next,
         .swiper-button-prev {
             color: #ffffff !important;
-            opacity: 0.6;
-            transition: opacity 0.2s ease;
+            width: 60px !important;
+            height: 60px !important;
+            opacity: 0.2;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Enlarge arrow icons slightly */
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 22px !important;
+            font-weight: 300;
         }
 
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
-            opacity: 1;
+            opacity: 0.8;
+            transform: scale(1.1);
         }
 
-        .swiper-pagination-bullet {
-            background: #ffffff !important;
-            opacity: 0.3;
-        }
+        /* Hide buttons slightly on small touch screens if desired, but keep accessible */
+        @media (max-width: 768px) {
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 44px !important;
+                height: 44px !important;
+                opacity: 0.3;
+            }
 
-        .swiper-pagination-bullet-active {
-            opacity: 1 !important;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            font-size: 11px;
-            color: #555555;
-            border-top: 1px solid #262626;
-            margin-top: 80px;
-            letter-spacing: 1px;
+            .swiper-button-next::after,
+            .swiper-button-prev::after {
+                font-size: 18px !important;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Intan Mustika</h1>
-        <div class="subtitle">Architectural Design & Spatial Planning</div>
-        
-        <nav>
-            <button class="tab-btn active" data-tab="profile">Profile</button>
-            <button class="tab-btn" data-tab="projects">Selected Works</button>
-            <button class="tab-btn" data-tab="contact">Contact</button>
-        </nav>
-    </header>
-
-    <div class="content-container">
-        
-        <!-- PROFILE TAB -->
-        <div id="profile" class="tab-content active">
-            <h2>About The Studio</h2>
-            <p>Welcome to my digital space. I am an architectural designer specializing in sustainable structures, spatial planning, and building in existing contexts. My work bridges raw natural landscapes and clean, contemporary geometric forms.</p>
-        </div>
-
-        <!-- PROJECTS TAB (SWIPER SLIDER) -->
-        <div id="projects" class="tab-content">
-            <h2>Selected Works</h2>
-            <p>Use arrow keys or swipe to navigate through the project pages.</p>
+    <!-- Swiper Container -->
+    <div class="swiper">
+        <div class="swiper-wrapper">
             
-            <div class="swiper-container-wrapper">
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <!-- Add your exported portfolio pages here -->
-                        <div class="swiper-slide"><img src="portfolio_pages/page-1.jpg" alt="Portfolio Page 1"></div>
-                        <div class="swiper-slide"><img src="portfolio_pages/page-2.jpg" alt="Portfolio Page 2"></div>
-                        <div class="swiper-slide"><img src="portfolio_pages/page-3.jpg" alt="Portfolio Page 3"></div>
-                        <div class="swiper-slide"><img src="portfolio_pages/page-4.jpg" alt="Portfolio Page 4"></div>
-                    </div>
+            <!-- ======================================================================= -->
+            <!-- ADD / REPLACE YOUR PORTFOLIO PAGES HERE                                 -->
+            <!-- Duplicate or remove <div class="swiper-slide"> blocks as needed.        -->
+            <!-- ======================================================================= -->
 
-                    <!-- Navigation controls -->
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
+            <!-- Page 1 -->
+            <div class="swiper-slide">
+                <img src="portfolio_pages/page-1.jpg" alt="Architectural Portfolio Page 1" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a1a1a/888888?text=portfolio_pages/page-1.jpg';">
             </div>
+
+            <!-- Page 2 -->
+            <div class="swiper-slide">
+                <img src="portfolio_pages/page-2.jpg" alt="Architectural Portfolio Page 2" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a1a1a/888888?text=portfolio_pages/page-2.jpg';">
+            </div>
+
+            <!-- Page 3 -->
+            <div class="swiper-slide">
+                <img src="portfolio_pages/page-3.jpg" alt="Architectural Portfolio Page 3" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a1a1a/888888?text=portfolio_pages/page-3.jpg';">
+            </div>
+
+            <!-- Page 4 -->
+            <div class="swiper-slide">
+                <img src="portfolio_pages/page-4.jpg" alt="Architectural Portfolio Page 4" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a1a1a/888888?text=portfolio_pages/page-4.jpg';">
+            </div>
+
+            <!-- Page 5 -->
+            <div class="swiper-slide">
+                <img src="portfolio_pages/page-5.jpg" alt="Architectural Portfolio Page 5" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1a1a1a/888888?text=portfolio_pages/page-5.jpg';">
+            </div>
+
+            <!-- ======================================================================= -->
+
         </div>
 
-        <!-- CONTACT TAB -->
-        <div id="contact" class="tab-content">
-            <h2>Get In Touch</h2>
-            <p>Interested in collaborating on a future project or looking for custom spatial consulting?</p>
-            <p style="margin-top: 30px;"><strong>Email:</strong> intanmustika12@gmail.com</p>
-            <p><strong>Location:</strong> Germany</p>
-        </div>
-
+        <!-- Left / Right Navigation Controls -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
 
-    <footer>
-        &copy; 2026 Intan Mustika. Powered by GitHub Pages.
-    </footer>
-
-    <!-- Swiper.js Script -->
+    <!-- Swiper.js JavaScript (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <!-- Tab Switching & Swiper Initialization Script -->
+    <!-- Slider Initialization -->
     <script>
-        let swiperInstance = null;
+        window.addEventListener('DOMContentLoaded', () => {
+            const swiper = new Swiper('.swiper', {
+                // Smooth transition speed
+                speed: 400,
+                
+                // Infinite looping disabled for standard document reading order
+                loop: false,
 
-        document.querySelectorAll('.tab-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const targetTab = button.getAttribute('data-tab');
+                // Touch and drag support
+                grabCursor: true,
 
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
+                // Keyboard Arrow Navigation
+                keyboard: {
+                    enabled: true,
+                    onlyInViewport: true,
+                },
 
-                document.getElementById(targetTab).classList.add('active');
-                button.classList.add('active');
+                // Mousewheel scrolling navigation
+                mousewheel: {
+                    thresholdDelta: 50,
+                    sensitivity: 1,
+                },
 
-                // Initialize Swiper when the 'Selected Works' tab is opened
-                if (targetTab === 'projects') {
-                    if (!swiperInstance) {
-                        swiperInstance = new Swiper('.swiper', {
-                            loop: false,
-                            grabCursor: true,
-                            keyboard: { enabled: true },
-                            pagination: { el: '.swiper-pagination', clickable: true },
-                            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-                        });
-                    } else {
-                        // Force layout update when switching back to tab
-                        swiperInstance.update();
-                    }
+                // Minimal Edge Navigation Arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+                // Fade transition for ultra-clean architectural presentation
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
                 }
             });
         });
     </script>
-
 </body>
 </html>
